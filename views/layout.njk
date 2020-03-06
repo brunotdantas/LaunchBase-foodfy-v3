@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Foodfy</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"> 
+    <link rel="stylesheet" href="custom.css">
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="height: 40px;"></div>
+
+      <!-- Header -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-transparent mb-5">
+        <!-- button when screen get smaller -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- // -->
+
+        <a class="navbar-brand" href="/">
+          <img class="img-fluid"
+            src="/logo.png" 
+          alt="Foodfylogo">
+        </a>
+
+        <!-- Navbar itens --> 
+        <div class="navbar-collapse collapse" id="collapsingNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item active ml-5">
+              <a class="nav-link h5" href="/sobre">
+                Sobre
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link h5" href="/receitas">
+                Receitas
+              </a>
+            </li>
+
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <div class="btn-group">
+                <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
+                  Admin
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Cadastrar novas receitas</a>
+                  <a class="dropdown-item" href="#">Alterar receitas</a>
+                  <a class="dropdown-item" href="#">Deletar receitas</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- /Navbar itens --> 
+
+
+      </nav>
+      <!-- /Header -->
+
+      <!-- Begins page content -->
+      {% block content %}{% endblock %}
+      <!-- End page content -->
+
+    </div>
+    <!-- /container principal -->
+
+    <!-- Footer -->
+    <div class="jumbotron text-center bg-light" style="padding-top: 16px; padding-bottom: 1px; margin-bottom:0; margin-top:30px">
+      <h6 class="text-muted">Todos direitos reservados, receitas Foodfy. Criado por
+        <a class="githubLink" target="_blank" href="https://github.com/brunotdantas/LaunchBase-foodfy">Bruno Dantas</a>
+      </h6>
+    </div>
+    <!-- /Footer -->
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

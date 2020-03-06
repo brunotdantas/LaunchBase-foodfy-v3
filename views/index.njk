@@ -1,0 +1,49 @@
+{% extends "layout.njk" %}
+
+{% block content%}
+  <!-- page content banner top -->
+  <div class="jumbotron jumbotron-fluid" style="background:#fbdfdb;  border-radius: 60px; margin-top: 20px; padding-top: 40px; ">
+    <div class="container">
+      <div class="row">
+        <div class="col my-auto text-center">
+          <h2>As Melhores Receitas</h2>
+          <h5>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.
+          </h5>
+        </div>
+
+        <div class="col text-center">
+          <img src="/chefe.png" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- /page content banner top -->
+  </div>
+
+  <!-- List receipts -->
+  <div class="container">
+    <div class="row" style="margin-bottom:24px">
+      <h3>
+        As 6 Receitas mais acessadas</h3>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3">
+      {% for receita in ListaReceitas %}
+        <div class="col mb-4">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="{{receita.image}}" alt="{{receita.title}}">
+            <div class="card-body">
+              <h5 class="card-title">{{receita.title}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">por
+                {{receita.author}}</h6>
+              <a href="/receita?id={{receita.id}}" class="stretched-link .d-none"></a>
+            </div>
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+  <!-- /List receipts -->
+
+{% endblock %}

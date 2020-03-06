@@ -1,0 +1,26 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-md-4">
+            {% for receita in ListaReceitas %}
+                <div class="col mb-4">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="{{receita.image}}" alt="{{receita.title}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{receita.title}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">por
+                                {{receita.author}}</h6>
+                            <a href="/receita?id={{receita.id}}" class="stretched-link .d-none"></a>
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}
