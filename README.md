@@ -6,4 +6,4 @@ Mudanças relevantes:
     - Melhor doq usar o jascript direto para manipular a base local (data.json) vou usar o lowdb 
     
 
-Veja [aqui](https://github.com/Rocketseat/bootcamp-launchbase-desafios-03/blob/master/desafios/03-refatorando-foodfy.md)  a descrição do desafio
+Veja [aqui](https://github.com/Rocketseat/bootcamp-launchbase-desafios-04/blob/master/desafios/04-admin-foodfy.md)  a descrição do desafio

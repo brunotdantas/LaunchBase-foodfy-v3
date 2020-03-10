@@ -1,0 +1,152 @@
+{% extends "adm_layout.njk" %}
+
+{% block content %}
+  <form method="POST" action="/admin/recipes/">
+    <div class="container" id="ingredients">
+      <div class="form-group">
+        <label for="img-receita" class="h4 font-weight-bold mt-5">Título da receita</label>
+        <input class="form-control" type="text" name="titulo_rec" placeholder="Digite  aqui o título da receita">
+      </div>
+
+      <div class="form-group">
+        <label for="img-receita" class="h4 font-weight-bold mt-5">Imagem(url) da receita</label>
+        <input class="form-control" type="text" name="rec_img" placeholder="cole aqui a URL da imagem da receita">
+      </div>
+
+      <div class="form-group">
+        <label for="img-receita" class="h4 font-weight-bold mt-5">Autor</label>
+        <input class="form-control" type="text" name="rec_author" placeholder="Escreva aqui o autor desta receita">
+      </div>
+
+      <div class="form-group mt-4">
+        <label for="img-receita" class="h4 font-weight-bold mt-3">Ingredientes</label>
+
+        {% for ingrediente in receita.ingredients %}
+          <div class="form-row">
+            <div class="col-md-10">
+              <input class="form-control mb-2 ingredient " name="ingredients[]" type="text" placeholder="digite um ingrediente"/>
+            </div>
+            <div class="col">
+
+              <span class="input-group-btn ml-2">
+                <button class="btn btn-danger btn-remove mb-2" type="button">
+                  <span class="fas fa-minus"></span>
+                </button>
+              </div>
+            </div>
+          {% endfor %}
+          <!-- TODO: Quando o ultimo for branco não fazer a inclusão de um novo campo -->
+
+          <div class="last-ing"></div>
+
+        </div>
+        <div class="form-group">
+
+          <div class="row container">
+            <span class="input-group-btn ml-1">
+              <button class="btn btn-success btn-add add-ingredient" type="button">
+                <span class="fas fa-plus"></span>
+              </button>
+            </div>
+
+            <!-- Modo de preparo -->
+
+            <label for="img-receita" class="h4 font-weight-bold mt-5">Modo de preparo</label>
+
+            {% for preparo in receita.preparation %}
+              <div class="form-row">
+                <div class="col-md-10">
+                  <input class="form-control mb-2 ingredient " name="preparo[]" type="text" value="{{preparo}}" placeholder="digite um ingrediente"/>
+                </div>
+                <div class="col">
+
+                  <span class="input-group-btn ml-2">
+                    <button class="btn btn-danger btn-remove mb-2" type="button">
+                      <span class="fas fa-minus"></span>
+                    </button>
+                  </div>
+                </div>
+              {% endfor %}
+              <!-- TODO: Quando o ultimo for branco não fazer a inclusão de um novo campo -->
+
+              <div class="last-prep"></div>
+
+              <div class="row container">
+                <span class="input-group-btn ml-1">
+                  <button class="btn btn-success btn-prep add-prep" type="button">
+                    <span class="fas fa-plus"></span>
+                  </button>
+                </div>
+                <!-- TODO: Quando o ultimo for branco não fazer a inclusão de um novo campo -->
+
+                <div class="form-group ">
+                  <label for="img-receita" class="h4 font-weight-bold mt-5">Informações adicionais</label>
+                  <textarea class="form-control" name="add_info" rows="6">{{receita.information}}</textarea>
+                </div>
+
+              </div>
+              <!-- /fim container fields -->
+              <div class="row mt-4">
+                <input type="submit" class="btn  btn-outline-success btn-lg btn-block" value="Salvar receita">
+              </div>
+            </form>
+          </div>
+
+          <script>
+            $(function () {
+              $(document).on('click', '.btn-remove', function (e) {
+                $(this)
+                  .closest(".form-row")
+                  .remove();
+
+                e.preventDefault();
+                return false;
+              });
+            });
+          </script>
+
+          <script>
+            function addIngredient() {
+              var html = `<div class="form-row">
+                <div class="col-md-10">
+                  <input class="form-control mb-2 ingredient " name="ingredients[]" type="text" value="{{ingrediente}}" placeholder="digite um ingrediente"/>
+                </div>              
+                <div class="col">
+
+                  <span class="input-group-btn ml-2">
+                    <button class="btn btn-danger btn-remove mb-2" type="button">
+                      <span class="fas fa-minus"></span>
+                    </button>
+                </div>
+            </div>`
+
+              $(html).insertBefore($(".last-ing"));
+            }
+
+            function addPrep() {
+              var html = `<div class="form-row">
+                <div class="col-md-10">
+                  <input class="form-control mb-2 ingredient " name="preparo[]" type="text" value="{{preparo}}" placeholder="digite um ingrediente"/>
+                </div>              
+                <div class="col">
+
+                  <span class="input-group-btn ml-2">
+                    <button class="btn btn-danger btn-remove mb-2" type="button">
+                      <span class="fas fa-minus"></span>
+                    </button>
+                </div>
+            </div>`
+
+              $(html).insertBefore($(".last-prep"));
+
+            }
+
+            document
+              .querySelector(".add-ingredient")
+              .addEventListener("click", addIngredient);
+
+            document
+              .querySelector(".add-prep")
+              .addEventListener("click", addPrep);
+          </script>
+        {% endblock %}

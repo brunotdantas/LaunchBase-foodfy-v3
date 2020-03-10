@@ -1,0 +1,186 @@
+{% extends "adm_layout.njk" %}
+
+{% block content %}
+  <form method="POST" action="/admin/recipes?_method=PUT">
+  <input type="text" name="rec_id" value="{{receita.id}}" hidden>
+
+    <div class="row mb-3">
+      <div class="col-auto mr-auto">
+        <p class="h3">Editando Receita:
+          <b>{{receita.title}}</b>
+        </p>
+      </div>
+      <div class="col-auto">
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter">
+        Deletar receita      
+      </button>
+
+      </div>
+
+      <div class="col-auto">
+        <input type="submit" class="btn btn-outline-success" value="Salvar receita">
+      </div>
+    </div>
+
+    <div class="container" id="ingredients">
+      <div class="form-group">
+        <label for="img-receita" class="h4 font-weight-bold mt-5">Imagem da receita</label>
+        <input class="form-control" type="text" name="rec_img" value="{{receita.image}}">
+      </div>
+
+      <div class="form-group mt-4">
+        <label for="img-receita" class="h4 font-weight-bold mt-3">Ingredientes</label>
+
+        {% for ingrediente in receita.ingredients %}
+          <div class="form-row">
+            <div class="col-md-10">
+              <input class="form-control mb-2 ingredient " name="ingredients[]" type="text" value="{{ingrediente}}" placeholder="digite um ingrediente"/>
+            </div>
+            <div class="col">
+
+              <span class="input-group-btn ml-2">
+                <button class="btn btn-danger btn-remove mb-2" type="button">
+                  <span class="fas fa-minus"></span>
+                </button>
+              </div>
+            </div>
+          {% endfor %}
+          <!-- TODO: Quando o ultimo for branco não fazer a inclusão de um novo campo -->
+
+          <div class="last-ing"></div>
+
+        </div>
+        <div class="form-group">
+
+          <div class="row container">
+            <span class="input-group-btn ml-1">
+              <button class="btn btn-success btn-add add-ingredient" type="button">
+                <span class="fas fa-plus"></span>
+              </button>
+            </div>
+
+            <!-- Modo de preparo -->
+
+            <label for="img-receita" class="h4 font-weight-bold mt-5">Modo de preparo</label>
+
+            {% for preparo in receita.preparation %}
+              <div class="form-row">
+                <div class="col-md-10">
+                  <input class="form-control mb-2 ingredient " name="preparo[]" type="text" value="{{preparo}}" placeholder="digite um ingrediente"/>
+                </div>
+                <div class="col">
+
+                  <span class="input-group-btn ml-2">
+                    <button class="btn btn-danger btn-remove mb-2" type="button">
+                      <span class="fas fa-minus"></span>
+                    </button>
+                  </div>
+                </div>
+              {% endfor %}
+              <!-- TODO: Quando o ultimo for branco não fazer a inclusão de um novo campo -->
+
+              <div class="last-prep"></div>
+
+              <div class="row container">
+                <span class="input-group-btn ml-1">
+                  <button class="btn btn-success btn-prep add-prep" type="button">
+                    <span class="fas fa-plus"></span>
+                  </button>
+                </div>
+                <!-- TODO: Quando o ultimo for branco não fazer a inclusão de um novo campo -->
+
+                <div class="form-group ">
+                  <label for="img-receita" class="h4 font-weight-bold mt-5">Informações adicionais</label>
+                  <textarea class="form-control" name="add_info" rows="6">{{receita.information}}</textarea>
+                </div>
+
+              </div>
+              <!-- /fim container fields -->
+
+            </form>
+          </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Você tem certeza que deseja deletar a receita: {{receita.title}}? </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Essa é uma ação <mark>Irreversível</mark> </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="/admin/recipe/delete?id={{receita.id}}" class="btn btn-outline-danger" role="button">Deletar receita</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+          <script>
+            $(function () {
+              $(document).on('click', '.btn-remove', function (e) {
+                $(this)
+                  .closest(".form-row")
+                  .remove();
+
+                e.preventDefault();
+                return false;
+              });
+            });
+          </script>
+
+          <script>
+            function addIngredient() {
+              var html = `<div class="form-row">
+                <div class="col-md-10">
+                  <input class="form-control mb-2 ingredient " name="ingredients[]" type="text" value="{{ingrediente}}" placeholder="digite um ingrediente"/>
+                </div>              
+                <div class="col">
+
+                  <span class="input-group-btn ml-2">
+                    <button class="btn btn-danger btn-remove mb-2" type="button">
+                      <span class="fas fa-minus"></span>
+                    </button>
+                </div>
+            </div>`
+
+              $(html).insertBefore($(".last-ing"));
+            }
+
+            function addPrep() {
+              var html = `<div class="form-row">
+                <div class="col-md-10">
+                  <input class="form-control mb-2 ingredient " name="preparo[]" type="text" value="{{preparo}}" placeholder="digite um ingrediente"/>
+                </div>              
+                <div class="col">
+
+                  <span class="input-group-btn ml-2">
+                    <button class="btn btn-danger btn-remove mb-2" type="button">
+                      <span class="fas fa-minus"></span>
+                    </button>
+                </div>
+            </div>`
+
+              $(html).insertBefore($(".last-prep"));
+
+            }
+
+            document
+              .querySelector(".add-ingredient")
+              .addEventListener("click", addIngredient);
+
+            document
+              .querySelector(".add-prep")
+              .addEventListener("click", addPrep);
+          </script>
+        {% endblock %}

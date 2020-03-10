@@ -1,0 +1,37 @@
+{% extends "adm_layout.njk" %}
+
+
+{% block content%}
+
+<div class="row mb-5">
+  <div class="col">
+    <h2 class="">Gerenciar receitas</h2>
+  </div>
+  <div class="col">
+    <a href="/admin/recipes/create" class="btn btn-outline-success" role="button">Criar uma receita nova :)</a>
+  </div>
+</div>
+
+
+<!-- Receitas -->
+<div class="row row-cols-1 row-cols-md-2">
+      {% for receita in ListaReceitas %}
+        <div class="col mb-4">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="{{receita.image}}" alt="{{receita.title}}">
+            <div class="card-body">
+              <h5 class="card-title">{{receita.title}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">por
+                {{receita.author}}</h6>
+              <a href="/admin/recipe?id={{receita.id}}" class="stretched-link .d-none"></a>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-light">Visualizar</button>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Foodfy</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+        <link rel="stylesheet" href="custom.css">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row" style="height: 40px;"></div>
+
+            <!-- Header -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark  mb-5">
+            
+
+                <a class="navbar-brand" href="/">
+                    <img class="img-fluid" src="/logo_adm.png" alt="Foodfylogo">
+                </a>
+
+
+            </nav>
+            <!-- /Header -->
+
+            <!-- Begins page content -->
+            {% block content %}{% endblock %}
+            <!-- End page content -->
+
+        </div>
+        <!-- /container principal -->
+
+        <!-- Footer -->
+        <div class="jumbotron text-center bg-light" style="padding-top: 16px; padding-bottom: 1px; margin-bottom:0; margin-top:30px">
+            <h6 class="text-muted">Todos direitos reservados, receitas Foodfy. Criado por
+                <a class="githubLink" target="_blank" href="https://github.com/brunotdantas/LaunchBase-foodfy">Bruno Dantas</a>
+            </h6>
+        </div>
+        <!-- /Footer -->
+
+
+    </body>
+</html>
